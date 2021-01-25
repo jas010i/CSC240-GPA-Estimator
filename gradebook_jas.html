@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+
+<title>Student Grade Editor</title>
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+
+
+// Below is the function I coded to convert a numerical grade average
+// into a letter grade. The conversion is based off of the numerical input.
+// For instance if a student got an average of a '68' for the course, then the
+// the function would output a "D" for the student. A '98' would recieve an "A".
+
+
+function generateGrade() {
+
+// Below is the variable that will collect the students name
+// that is inputed.
+
+var studentName = document.getElementById("student-name");
+
+// Below is the variable that will collect the course name/number
+// that the student is enrolled in.
+
+var courseName = document.getElementById("course-name");
+
+// Below is the variable that will collect the students average
+// grade for the course that is inputed.
+
+var studentGrade = document.getElementById("grade-input");
+
+// Below is where the function will run the inputed data and run it until
+// it reaches a condition that is true. For instance if the student recieved a '67'
+// the function will run through the first "if" condition, which declares that the 
+// numerical-data must be 'equal to 60 or less', if it is false it will run the next step
+// 'else if', which declares a requisite of being 'equal to 60.5 or greater, AND equal to 69.5 or less',
+// which in this case it will return true, and output a letter grade of "D". If a '98' were inputed
+// then the function will run all the way to the last condition.
+
+    if(60.4 >= document.getElementById("grade-input").value)
+        {
+            studentGrade = "F";
+        }
+        else if(60.5 <= document.getElementById("grade-input").value && 69.5 >= document.getElementById("grade-input").value)
+            {
+                studentGrade = "D";
+            }
+            else if(69.6 <= document.getElementById("grade-input").value && 79.5 >= document.getElementById("grade-input").value)
+                {
+                    studentGrade = "C";
+                }
+                else if(79.6 <= document.getElementById("grade-input").value && 89.5 >= document.getElementById("grade-input").value)
+                    {
+                        studentGrade = "B";
+                    }
+                    else if(89.6 <= document.getElementById("grade-input").value)
+                        {
+                            studentGrade = "A";
+                        }
+
+// This is the last step in the function. This tells the function where at on the page
+// to display the information and what information to display.
+
+document.getElementById("letter-grade").innerHTML = 
+
+    "The letter grade for " 
+
+        + studentName.value + " enrolled in course " 
+            
+                + courseName.value + " is "
+
+                        + studentGrade.substring(0,3) + ".";
+
+}
+
+</script>
+
+<style>
+
+* {box-sizing: border-box;}
+
+html {margin: 0; background-size: 0; background-attachment: fixed; background-size: contain;
+    background-image: url(wilmu-backer.PNG);
+}
+
+div.numberInput {margin-top: 5%; position: relative; width: 80%; display: block; background-color: white; left: 10%; border: 8px solid rgb(218, 197, 3);}
+
+div.numberInput > input {margin: 4%; width: 40%; position: relative; border: 6px solid #00863c; padding-left: 1%; padding-right: 1%; padding: 2%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                         font-size: 1.5vw; color: rgb(58, 58, 58); background-color: rgb(250, 250, 250);}
+
+div.numberInput > p {display: block; margin-left: 4%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                        font-size: 1.5vw; color: red; margin-bottom: 15%; transition: .7s ease-in-out;}
+
+div.numberInput > img {width: 20%; position: relative; left: 40%; margin-top: 2%; margin-bottom: 2%;}
+
+div.numberInput > #grade-submit {cursor: pointer; color: #555; transition: .4s ease-in;}
+
+div.numberInput > #grade-submit:hover {cursor: pointer; color: #00863c; transition: .4s ease-in; background-color: rgb(218, 197, 3);}
+
+.topnav {position: relative; width: 100%;}
+
+.topnav > a {position: relative; left: 30%; width: 10%; color: white; background-color: #00863c; padding: 1%; text-align: center;
+                text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 1vw; margin-left: 0; margin-right: 0; font-weight: bold; float: left; overflow: hidden; transition: .5s ease-in-out;}
+
+.topnav > a:hover {cursor: pointer; background-color: rgb(218, 197, 3); transition: .5s ease-in-out;}
+
+</style>
+
+</head>
+
+<body>
+
+        <p style="text-align: center; color: rgb(255, 255, 255); margin-bottom: 1%;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Jason Solis | 09/13/2020 | Programming Lab 3</p>
+
+
+    <div class="numberInput">
+
+        <img src="https://sbybiz.org/app/uploads/2014/03/universitylogo_color.jpg">
+
+        <div class="topnav">
+
+            <hr style="width: 40%; position: relative; border: 2px solid rgb(218, 197, 3); margin-bottom: 0;">
+            <a href="#home">myHome</a>
+            <a href="#portal">myPortal</a>
+            <a href="#course">myCourses</a>
+            <a href="#student">myStudents</a>
+
+        </div>
+
+            <h1 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                        margin-left: 4%; margin-top: 10%; color: #00863c;">Letter Grade Converter</h1>
+
+            <input type="text" id="student-name" placeholder="Enter Student Name" autocomplete="off" required>
+            <input type="text" id="course-name" placeholder="Enter Course Name/Number" autocomplete="off" required>
+            <input type="number" id="grade-input" placeholder="Enter Course Average" autocomplete="off" max="100" maxlength="3" required>
+            <input type="submit" id="grade-submit" value="Calculate Letter Grade" onclick="generateGrade(); return false;">
+
+            <p id="letter-grade"></p>
+
+    </div>
+
+
+        <footer>
+
+                <p style="margin: 5%; text-align: center; color: white; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                    Wilmington University | Founded 1968</p>
+
+        </footer>
+
+
+</body>
+
+</html>
